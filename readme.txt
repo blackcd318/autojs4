@@ -1,3 +1,7 @@
+以下是原作者的github地址(https://github.com/hyb1996/NoRootScriptDroid)
+因为原作者已经不维护免费版,我没事的时候还会去搞搞,所以替换掉了原作者的这个信息,希望觉得我修改的还行的用户在你决定软件有bug时可以到我的github来下载最新修改的版本,如果这个文件里没有列出你遇到的问题,你可以在Issues给我留言,有时间的话我可以尝试修改掉bug.
+
+
 autojs4.1.1alpha2改了几个bug，加了几个添加任务的函数，仿照pro版的，不过只是基础的功能，凑合能用（armeabi是用在arm cpu的app， x86是用在intel cpu的，7z是源码压缩了，因为windows的git做的太啰嗦，不想装）
 1.有些界面使用id()不能得到控件
 2.开机后不手动启动app而使得device.height和device.width返回值为0的不正确

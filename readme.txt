@@ -24,6 +24,23 @@ timers.addDailyTask({
 另外,此版本还修改了(11)的算法,在前面判断会有问题,不能如愿,感觉这个好了,下载过的人可以试试这个
 14.2022-04-09 (13)不是只能脚本设置定时任务到秒吗,这个版本可以手动设置了.另外把自己的github页面也加进了里面,走了一圈,留个名也不是很坏的事
 15.2022-05-19 前两天才发现一次性任务只是显示到秒,一设置秒就成00了,今天休正了
+16.2022-06-03 运行带建立自动任务的脚本几遍就会出几个任务,没有删除任务会很乱,添加了几个函数
+              queryTimedTasks, 返回时间任务数组,参数为id, time, scheduled, delay, interval, loop_times, millis, script_path中的0-n个
+              queryIntentTasks, 返回事件任务数组,参数为id, script_path, action, category, data_type, local中的0-n个
+              这两个函数我尽量做的兼容后面pro版的同名函数
+              removeTimedTask,  删除时间任务,参数同queryTimedTasks
+              removeIntentTask. 删除事件任务, 参数同queryIntentTasks
+              这两个本来想兼容pro版同名函数的,后来发现还要新增几个函数,关键的原因是这俩函数不能直接使用,还要先得到任务id才能删除,觉得不方便,就改成了这样的参数,可以直接删任务
+       下面拿timedtask举个例子,intenttask仿照就行
+       timers.queryTimedTasks({
+         id:1,
+         path:'/storage/emulated/0/脚本/hd.js'
+       }).forEach(v => {log(v)});
+       log("-------------------");
+       timers.removeTimedTask({
+         path: '/storage/emulated/0/脚本/hd11.js'
+       });
+       这里的path等价script_path, pro版里这样, 我做了下兼容
 
 ps:
 2022-01-25前面的版本在安卓11(我现在手机是这个版本，再前面是不是这样我没试验)上把大的js脚本缩小会导致文件后面的内容删不掉(这不是原生的bug，是我去掉原作在修改脚本后备份文件时产生的)，这个改了，因为没维护版本号，下新的就行，后面的比前面的bug会有修改

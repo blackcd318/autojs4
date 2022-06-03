@@ -37,10 +37,12 @@ timers.addDailyTask({
          path:'/storage/emulated/0/脚本/hd.js'
        }).forEach(v => {log(v)});
        log("-------------------");
+       timers.queryTimedTasks().forEach(v => {log(v)});
+       log("-------------------");
        timers.removeTimedTask({
          path: '/storage/emulated/0/脚本/hd11.js'
        });
-       这里的path等价script_path, pro版里这样, 我做了下兼容
+       这里的path等价script_path, pro版里这样, 我做了下兼容, remove的两个函数参数不能为空,会抛出异常,总不能一个失误没写参数把所有任务都删了吧
 
 ps:
 2022-01-25前面的版本在安卓11(我现在手机是这个版本，再前面是不是这样我没试验)上把大的js脚本缩小会导致文件后面的内容删不掉(这不是原生的bug，是我去掉原作在修改脚本后备份文件时产生的)，这个改了，因为没维护版本号，下新的就行，后面的比前面的bug会有修改

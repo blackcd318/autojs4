@@ -46,6 +46,7 @@ timers.addDailyTask({
        这里的path等价script_path, pro版里这样, 我做了下兼容, remove的两个函数参数不能为空,会抛出异常,总不能一个失误没写参数把所有任务都删了吧
 17.2022-09-03 原版411偶尔会退出程序,不知道什么原因,换用debug版后会报有资源没回收,但是又没有退出程序,查找问题,更改了TemplateMatching.java里面的几行,试验了快两个星期了吧,没再报错,也不知道改的这处与程序退出有没有关系,总之小小升级一下.
 18.2022-09-14 411在使用engines.execScriptFile时,如果只使用第一个参数,平时没什么问题,但是如果运行的脚本不在默认目录(例如原始的/sdcard/脚本),而是在脚本下面的目录a里(engines.execScriptFile("/sdcard/脚本/a/tst.js"),不巧的如果脚本里使用了require,而且它的参数是相对路径,我的是这样的,require("../myfun.js"),脚本运行时出错了(大概意思是没有myfun.js这个文件,我没细看),但是在autojs程序里直接点击该脚本运行又不报错.觉得这是个bug,于是就改了一点__engines__.js的fillConfig函数,上面调用它的三个地方也修改了一下.
+19.2022-11-04 添加了UiObject.clickCenter()函数(仿照pro版做的,我自己对安卓程序不熟悉),作用相当于click(UiObject.bounds().centerX(), UiObject.bounds().centerY()),用法跟UiObject.click()一样.
 
 ps:
 2022-01-25前面的版本在安卓11(我现在手机是这个版本，再前面是不是这样我没试验)上把大的js脚本缩小会导致文件后面的内容删不掉(这不是原生的bug，是我去掉原作在修改脚本后备份文件时产生的)，这个改了，因为没维护版本号，下新的就行，后面的比前面的bug会有修改
